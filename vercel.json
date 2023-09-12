@@ -2,13 +2,13 @@
     "version":2,
     "builds":[
         {
-            "public":"./index.html",
+            "src":"./index.js",
             "use":"@vercel/node"
         }
     ],
     "routes":[
         {
-            "public":"/(.*)",
+            "src":"/(.*)",
             "dest":"/"
         }
     ]
