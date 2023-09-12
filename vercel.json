@@ -1,0 +1,15 @@
+{
+    "version":2,
+    "builds":[
+        {
+            "public":"./index.html",
+            "use":"@vercel/node"
+        }
+    ],
+    "routes":[
+        {
+            "public":"/(.*)",
+            "dest":"/"
+        }
+    ]
+}
