@@ -5,8 +5,7 @@ import AllRoutes from "./Components/AllRoutes";
 
 function App() {
   return (
-    <Box>
-      <Navbar/>
+    <Box bg={'#eeeeee'} >
       <AllRoutes/>
     </Box>
   );

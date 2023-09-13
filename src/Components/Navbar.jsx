@@ -37,7 +37,7 @@ const Navbar = () => {
     }
     const { isOpen, onOpen, onClose } = useDisclosure()
     return (
-        <Box bg={'#4285f4'}>
+        <Box bg={'#4285f4'}boxShadow='xl'>
             <Flex w={['100%', '100%', '100%', '80%']} m={'auto'} >
                 <Box onClick={onOpen} color={'white'} display={['box', 'box', 'box', 'none']} my={2} p={1} mx={3} fontSize={30} border={'2px solid white'} >
                     <GiHamburgerMenu />

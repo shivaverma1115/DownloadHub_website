@@ -1,10 +1,11 @@
-import { GET_MOVIES_FAILED, GET_MOVIES_REQUEST, GET_MOVIES_SEARCHMOVIES, GET_MOVIES_SUCCESS } from "./actionType";
+import { GET_MOVIES_FAILED, GET_MOVIES_GETMOVIEDETAILS, GET_MOVIES_REQUEST, GET_MOVIES_SEARCHMOVIES, GET_MOVIES_SUCCESS } from "./actionType";
 
 
 const initialState = {
     movies: [],
     isLoading: false,
     Serch :{} ,
+    movieDetails :{} ,
     isError: false
 }
 export const reducer = (state = initialState, { type, payload }) => {
@@ -26,6 +27,12 @@ export const reducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 Serch: payload
+            }
+        }
+        case GET_MOVIES_GETMOVIEDETAILS: {
+            return {
+                ...state,
+                movieDetails: payload
             }
         }
         case GET_MOVIES_FAILED: {

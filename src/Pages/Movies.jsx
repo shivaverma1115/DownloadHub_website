@@ -1,9 +1,10 @@
-import { Box, Button, Flex, Grid, GridItem, Img, Text } from '@chakra-ui/react';
+import { Box, Button, Flex, Grid, GridItem, Img, Skeleton, Text } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { getMoviesFailer, getMoviesRequest, getMoviesSuccess } from '../Redux/action';
+import { getMovieDetails, getMoviesFailer, getMoviesRequest, getMoviesSuccess } from '../Redux/action';
+import { useNavigate } from 'react-router-dom';
 
-const Movies = () => {
+const Movies = ({ templateColumns }) => {
     const dispatch = useDispatch();
     const Serch = useSelector((state) => state.Serch.Serch) || "";
     const fetchData = async () => {
@@ -22,47 +23,65 @@ const Movies = () => {
     }, [Serch])
 
     const movies = useSelector((store) => store.movies);
+    const isLoading = useSelector((store) => store.isLoading);
 
     const [curr, setCurr] = useState(1);
     const [perPage, setPerPage] = useState(12);
 
     const lastPostIndex = curr * perPage;
     const firstPostIndex = lastPostIndex - perPage;
-    const currmovies = movies.slice(firstPostIndex, lastPostIndex)
+    let currmovies = movies.slice(firstPostIndex, lastPostIndex)
 
-    let pages = [] ;
-    for ( var i = 1 ;i <= Math.ceil(movies.length/perPage);i++){
-        pages.push(i) ;
+    if( isLoading ){
+        currmovies = [1,2,3,4,5,6,7,8,9,1,1,1,1]
     }
-    console.log(pages) ;
-    
+
+    let pages = [];
+    for (var i = 1; i <= Math.ceil(movies.length / perPage); i++) {
+        pages.push(i);
+    }
+
+    const nevigate = useNavigate();
+    const handleMovieDetails = (ele) => {
+        nevigate("/movieDetails");
+        dispatch(getMovieDetails(ele));
+    }
+
     return (
         <>
-            <Grid templateColumns={['repeat(2, 1fr)', 'repeat(3, 1fr)', 'repeat(5, 1fr)', 'repeat(6, 1fr)']} gap={5}>
-                {
-                    currmovies.map((ele, i) => {
-                        return (
-                            <GridItem key={i} w={'100%'} maxH={'100%'} overflow={'hidden'} bg={'black'} cursor={'pointer'} >
-                                <Box w={'fit-content'} m={'auto'}>
-                                    <Img _hover={{ transform: "scale(1.3)", opacity: "70%" }} transition={'transform 0.3s'}
-                                        src={ele.Poster}
-                                    />
-                                    <Text position={'relative'} top={'-2vh'} w={'90%'} mx={'auto'} fontWeight={700} color={'white'}>
-                                        {ele.Title}
-                                    </Text>
-                                </Box>
-                            </GridItem>
-                        )
-                    })
-                }
-            </Grid>
+            
+                    <Grid templateColumns={templateColumns} gap={5}>
+                        {
+                            currmovies.map((ele, i) => {
+                                return (
+                                    <GridItem onClick={() => handleMovieDetails(ele)} overflow={'hidden'} key={i} w={'20vh'} bg={'black'} cursor={'pointer'} >
+                                        <Box>
+                                            {isLoading?(
+                                                <Skeleton height='35vh' />
+                                            ):(
+                                                <Box h={'35vh'} w={'100%'} fontWeight={500}
+                                                    _hover={{ transform: 'scale(1.3)', opacity: "70%", transition: 'transform .3s' }}
+                                                    bgRepeat={'no-repeat'}
+                                                    bgSize={'cover'}
+                                                    bgImage={ele.Poster}>
+                                                    <br /><br /><br /><br /><br /><br /><br /><br /><br />
+                                                    <Box bgImage={'https://img.freepik.com/premium-vector/gradient-transparent-background-dark-shadow-vertical-pattern-vector-illustration_53562-14943.jpg'} w={'fit-content'} textAlign={'center'} mx={'auto'} opacity={'100%'} overflow={'hidden'} maxH={'9vh'} color={'white'}>{ele.Title}</Box>
+                                                </Box>
+                                            )}
+                                        </Box>
+                                    </GridItem>
+                                )
+                            })
+                        }
+                    </Grid>
+
             <Flex w={'fit-content'} m={'auto'}>
                 <Flex w={'fit-content'} m={'auto'} my={10}>
-                    {/* <Button _hover={{bg:"none"}} borderRadius={'none'} color={'#f17a1f'} border={"2px solid #f17a1f"} bg={'white'} onClick={() => setCurr(curr - 1)} my={'auto'} colorScheme='blue'>Prev</Button>
-                    <Button _hover={{bg:"none"}} borderRadius={'none'} color={'#f17a1f'} border={"2px solid #f17a1f"} bg={'white'} onClick={() => setCurr(curr + 1)} isLoading={false} my={'auto'} colorScheme='blue'>Next</Button> */}
                     {
-                        pages.map((ele,i)=>{
-                            return <Text key={i} border={"2px solid #f17a1f"} fontSize={20} fontWeight={700} px={7} mx={5} py={0.7}>{ele}</Text>
+                        pages.map((ele, i) => {
+                            return <Text cursor={'pointer'} onClick={() => setCurr(i + 1)} key={i} border={"2px solid #f17a1f"} color={'#f17a1f'} mx={5} fontSize={20} fontWeight={500} px={7} py={0.7}>
+                                {ele}
+                            </Text>
                         })
                     }
                 </Flex>
