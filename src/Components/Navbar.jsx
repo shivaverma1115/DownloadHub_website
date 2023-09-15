@@ -40,7 +40,7 @@ const Navbar = () => {
 
     const nevigate = useNavigate() ;
     const handleCreateMovies = ()=>{
-        nevigate("/createMovies")
+        nevigate("/createMovies/upload")
     }
     return (
         <Box bg={'#4285f4'}boxShadow='xl'>

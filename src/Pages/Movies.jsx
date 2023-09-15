@@ -10,9 +10,9 @@ const Movies = ({ templateColumns }) => {
     const fetchData = async () => {
         try {
             dispatch(getMoviesRequest())
-            const res = await fetch(`https://downlord-hub-mongo-db-33ir.vercel.app/movies?title=${Serch}`);
+            const res = await fetch(`https://downloadhubbackened.vercel.app/movies?title=${Serch}&limit=12`);
             const ans = await res.json();
-            dispatch(getMoviesSuccess(ans.movies))
+            dispatch(getMoviesSuccess(ans))
         } catch (err) {
             dispatch(getMoviesFailer());
         }
@@ -22,7 +22,7 @@ const Movies = ({ templateColumns }) => {
         fetchData();
     }, [Serch])
 
-    const movies = useSelector((store) => store.movies);
+    let movies = useSelector((store) => store.movies);
     const isLoading = useSelector((store) => store.isLoading);
 
     const [curr, setCurr] = useState(1);
@@ -30,16 +30,16 @@ const Movies = ({ templateColumns }) => {
 
     const lastPostIndex = curr * perPage;
     const firstPostIndex = lastPostIndex - perPage;
-    let currmovies = movies.slice(firstPostIndex, lastPostIndex)
+    // let currmovies = movies.slice(firstPostIndex, lastPostIndex)
 
     if( isLoading ){
-        currmovies = [1,2,3,4,5,6,7,8,9,1,1,1,1]
+        movies = [1,2,3,4,5,6,7,8,9,1,1,1,1]
     }
 
-    let pages = [];
-    for (var i = 1; i <= Math.ceil(movies.length / perPage); i++) {
-        pages.push(i);
-    }
+    // let pages = [];
+    // for (var i = 1; i <= Math.ceil(movies.length / perPage); i++) {
+    //     pages.push(i);
+    // }
 
     const nevigate = useNavigate();
     const handleMovieDetails = (ele) => {
@@ -52,7 +52,7 @@ const Movies = ({ templateColumns }) => {
             
                     <Grid templateColumns={templateColumns} gap={5}>
                         {
-                            currmovies.map((ele, i) => {
+                            movies.map((ele, i) => {
                                 return (
                                     <GridItem onClick={() => handleMovieDetails(ele)} overflow={'hidden'} key={i} w={'20vh'} bg={'black'} cursor={'pointer'} >
                                         <Box>
@@ -75,7 +75,7 @@ const Movies = ({ templateColumns }) => {
                         }
                     </Grid>
 
-            <Flex w={'fit-content'} m={'auto'}>
+            {/* <Flex w={'fit-content'} m={'auto'}>
                 <Flex w={'fit-content'} m={'auto'} my={10}>
                     {
                         pages.map((ele, i) => {
@@ -85,7 +85,7 @@ const Movies = ({ templateColumns }) => {
                         })
                     }
                 </Flex>
-            </Flex>
+            </Flex> */}
         </>
     )
 }

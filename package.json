@@ -25,6 +25,7 @@
     "react-scripts": "5.0.1",
     "redux": "^4.2.1",
     "styled-components": "^6.0.7",
+    "vercel": "^32.2.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
