@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Grid, GridItem, Img, Skeleton, Text } from '@chakra-ui/react';
+import { Box, Flex, Grid, GridItem, Skeleton, Text } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { getMovieDetails, getMoviesFailer, getMoviesRequest, getMoviesSuccess } from '../Redux/action';

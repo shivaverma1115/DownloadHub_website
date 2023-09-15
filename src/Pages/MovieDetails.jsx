@@ -1,8 +1,7 @@
-import { Box, Flex, Grid, GridItem, Image, Img, Spacer, Text } from '@chakra-ui/react'
+import { Box, Flex, Grid, GridItem, Image, Img, Text } from '@chakra-ui/react'
 import React from 'react'
 import Information from './Information'
 import { useSelector } from 'react-redux';
-import { AiOutlineFolder } from 'react-icons/ai';
 import Movies from './Movies';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../Components/Navbar';

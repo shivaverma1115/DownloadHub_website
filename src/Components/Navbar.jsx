@@ -4,6 +4,7 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 import { BiSearchAlt2 } from 'react-icons/bi';
 import { useDispatch, useSelector } from 'react-redux';
 import { searchMovies } from '../Redux/action';
+import { useNavigate } from 'react-router-dom';
 const Navbar = () => {
     const dispatch = useDispatch() ;
     const [Serch,setSerch] = useState("") ;
@@ -36,6 +37,11 @@ const Navbar = () => {
         }
     }
     const { isOpen, onOpen, onClose } = useDisclosure()
+
+    const nevigate = useNavigate() ;
+    const handleCreateMovies = ()=>{
+        nevigate("/createMovies")
+    }
     return (
         <Box bg={'#4285f4'}boxShadow='xl'>
             <Flex w={['100%', '100%', '100%', '80%']} m={'auto'} >
@@ -43,7 +49,7 @@ const Navbar = () => {
                     <GiHamburgerMenu />
                 </Box>
                 <Spacer />
-                <Box minH={'6vh'} >
+                <Box onClick={()=>handleCreateMovies()} minH={'6vh'} >
                     <Image src='https://downloadhub.photos/wp-content/uploads/2017/03/downhub.png' />
                 </Box>
                 <Spacer />

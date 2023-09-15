@@ -1,5 +1,5 @@
-import { Box, Button, Flex, Grid, GridItem } from '@chakra-ui/react'
-import React, { useState } from 'react'
+import { Button, Grid, GridItem } from '@chakra-ui/react'
+import React from 'react'
 import { useDispatch } from 'react-redux';
 import { searchMovies } from '../Redux/action';
 
