@@ -5,9 +5,7 @@ import MovieDetails from '../Pages/MovieDetails'
 import GenerateLink from '../Pages/GenerateLink'
 import Links from '../Pages/Links'
 import DownloadPage from '../Pages/DownloadPage'
-import CloudinaryImg from '../Pages/CloudinaryImg'
 import AdminPage from '../Pages/AdminPage'
-import CreateMovie from '../Pages/CreateMovie'
 import Edit from '../Pages/Edit'
 import Login from '../Pages/Login'
 import PriveAllRoutes from '../utils/PriveAllRoutes'
@@ -23,9 +21,7 @@ const AllRoutes = () => {
       <Route path='/downloadPage' element={<DownloadPage />} />
 
       <Route element={<PriveAllRoutes />} >
-        <Route path='/upload-images' element={<CloudinaryImg />} />
         <Route path='/adminPage' element={<AdminPage />} />
-        {/* <Route path='/adminPage' element={<CreateMovie />} /> */}
         <Route path='/adminPage/edit' element={<Edit />} />
       </Route>
 

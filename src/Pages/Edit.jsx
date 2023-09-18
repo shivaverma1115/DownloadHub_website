@@ -1,7 +1,6 @@
 import { Box, Input, Spacer, Text, Table, Tbody, Tr, Td, TableContainer, Select, Button, Flex } from '@chakra-ui/react'
 import React, { useContext, useState } from 'react';
 import { AiTwotoneStar } from 'react-icons/ai';
-import CloudinaryImg from './CloudinaryImg';
 import Navbar from '../Components/Navbar';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../AuthContextApi/ContextProvider';

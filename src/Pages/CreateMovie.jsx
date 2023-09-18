@@ -1,10 +1,8 @@
-import { Box, Input, Spacer, Text, Table, Tbody, Tr, Td, TableContainer, Select, Button } from '@chakra-ui/react'
+import { Box, Input, Text, Table, Tbody, Tr, Td, TableContainer, Select, Button } from '@chakra-ui/react'
 import React, { useContext, useState } from 'react';
 import { AiTwotoneStar } from 'react-icons/ai';
-import CloudinaryImg from './CloudinaryImg';
-import CloudinaryImg2 from './CloudinaryImg2';
-import { useSelector } from 'react-redux';
 import { AuthContext } from '../AuthContextApi/ContextProvider';
+import UploadFiles from './UploadFiles';
 
 const CreateMovie = () => {
     const [createMovie, setCreateMovie] = useState({
@@ -47,7 +45,7 @@ const CreateMovie = () => {
        console.log(res) ;
     }
     return (
-        <Box p={5}>
+        <Box p={5} w={'100%'}>
             <TableContainer >
                 <Table variant='striped' colorScheme='gray'>
                     <Tbody>
@@ -70,7 +68,7 @@ const CreateMovie = () => {
                                 <Text fontSize={8} color={'red'} ><AiTwotoneStar /></Text>
                                 Year:
                             </Td>
-                            <Td><Input type='number' name='Year' value={createMovie.Year} onChange={(e) => handleInput(e)} placeholder='year here...' required border={'1px solid black'} /></Td>
+                            <Td><Input type='year' name='Year' min={1960} value={createMovie.Year} onChange={(e) => handleInput(e)} placeholder='year here...' required border={'1px solid black'} /></Td>
                         </Tr>
                         <Tr>
                             <Td>
@@ -135,21 +133,21 @@ const CreateMovie = () => {
                         <Tr>
                             <Td>
                                 <Text fontSize={8} color={'red'} ><AiTwotoneStar /></Text>
-                                Poster & Movie Quality Img :
+                                Poster :
                             </Td>
                             <Td>
-                                <CloudinaryImg setIsLoading={setIsLoading} setCreateMovie={setCreateMovie} createMovie={createMovie} />
+                                <UploadFiles name={'Poster'} setIsLoading={setIsLoading} setCreateMovie={setCreateMovie} createMovie={createMovie}/>
                             </Td>
                         </Tr>
-                        {/* <Tr>
+                        <Tr>
                             <Td>
                                 <Text fontSize={8} color={'red'} ><AiTwotoneStar /></Text>
                                 Movie Quality Img :
                             </Td>
                             <Td>
-                                <CloudinaryImg2 setIsLoading={setIsLoading} setCreateMovie={setCreateMovie} createMovie={createMovie} />
+                                <UploadFiles name={'big_img'} setIsLoading={setIsLoading} setCreateMovie={setCreateMovie} createMovie={createMovie}/>
                             </Td>
-                        </Tr> */}
+                        </Tr>
                     </Tbody>
                     <Box w={'fit-content'} m={'auto'} mt={5} >
                         <Button
