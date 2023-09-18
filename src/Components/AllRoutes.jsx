@@ -5,17 +5,30 @@ import MovieDetails from '../Pages/MovieDetails'
 import GenerateLink from '../Pages/GenerateLink'
 import Links from '../Pages/Links'
 import DownloadPage from '../Pages/DownloadPage'
-import CreateMovies from '../Pages/CreateMovies'
+import CloudinaryImg from '../Pages/CloudinaryImg'
+import AdminPage from '../Pages/AdminPage'
+import CreateMovie from '../Pages/CreateMovie'
+import Edit from '../Pages/Edit'
+import Login from '../Pages/Login'
+import PriveAllRoutes from '../utils/PriveAllRoutes'
 
 const AllRoutes = () => {
   return (
     <Routes>
-      <Route path='/' element={<Home/>} />
-      <Route path='/createMovies/upload' element={<CreateMovies/>} />
-      <Route path='/movieDetails' element={<MovieDetails/>} />
-      <Route path='/generateLink' element={<GenerateLink/>} />
-      <Route path='/links' element={<Links/>} />
-      <Route path='/downloadPage' element={<DownloadPage/>} />
+      <Route path='/' element={<Home />} />
+      <Route path='/movieDetails' element={<MovieDetails />} />
+      <Route path='/generateLink' element={<GenerateLink />} />
+      <Route path='/links' element={<Links />} />
+      <Route path='/Login' element={<Login />} />
+      <Route path='/downloadPage' element={<DownloadPage />} />
+
+      <Route element={<PriveAllRoutes />} >
+        <Route path='/upload-images' element={<CloudinaryImg />} />
+        <Route path='/adminPage' element={<AdminPage />} />
+        {/* <Route path='/adminPage' element={<CreateMovie />} /> */}
+        <Route path='/adminPage/edit' element={<Edit />} />
+      </Route>
+
     </Routes>
   )
 }

@@ -1,7 +1,8 @@
 import { Button, Grid, GridItem } from '@chakra-ui/react'
-import React from 'react'
+import React, { useContext } from 'react'
 import { useDispatch } from 'react-redux';
 import { searchMovies } from '../Redux/action';
+import { AuthContext } from '../AuthContextApi/ContextProvider';
 
 const Buttons = () => {
     const buttonText = [
@@ -23,19 +24,13 @@ const Buttons = () => {
         { title: "Pc Games", q: "Pc Games" },
         { title: "Web Series", q: "webseries" },
     ]
-    const dispatch = useDispatch();
-    const handleQuery = (Serch) => {
-        const payload = {
-            Serch
-        }
-        dispatch(searchMovies(payload));
-    }
+    const { setSearchBox } = useContext(AuthContext);
     return (
         <Grid w={'fit-content'} textAlign={'center'} mt={'1vh'} templateColumns={['repeat(2, 1fr)', 'repeat(3, 1fr)', 'repeat(4, 1fr)', 'repeat(5, 1fr)']} gap={3}>
             {
                 buttonText.map((ele, i) => {
                     return <GridItem key={i}>
-                        <Button onClick={() => handleQuery(ele.q)} _hover={{ color: "none" }} fontSize={15} color={'white'} boxShadow='2xl' bg={'#4285f4'} w={'100%'} borderRadius={'none'} >
+                        <Button onClick={() => setSearchBox(ele.q)} _hover={{ color: "none" }} fontSize={15} color={'white'} boxShadow='2xl' bg={'#4285f4'} w={'100%'} borderRadius={'none'} >
                             {ele.title}
                         </Button>
                     </GridItem>

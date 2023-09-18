@@ -1,17 +1,18 @@
-import React from 'react'
-import { Box, Flex, Spacer, Text, useToast } from "@chakra-ui/react"
+import React, { useContext } from 'react'
+import { Box, Button, Flex, Spacer, Text, WrapItem, useToast } from "@chakra-ui/react"
 import { AiOutlineCloudDownload } from 'react-icons/ai';
 import { BiSupport } from 'react-icons/bi';
 import { RiMoneyDollarCircleLine } from 'react-icons/ri';
 import { MdAssignmentInd } from 'react-icons/md';
 import { BiLogInCircle } from 'react-icons/bi';
 
-import { useSelector } from 'react-redux';
+import movie_url from "../Movies/Client Promo Video.mp4"
+import { AuthContext } from '../AuthContextApi/ContextProvider';
 
 const DownloadPage = () => {
     const toast = useToast()
-    const movieDetails = useSelector((state) => state.movieDetails);
-    const { Title, Year, File_Size } = movieDetails
+    const {Ele} = useContext(AuthContext) ;
+    const { Title, Year, File_Size,movie_drive_link } = Ele ;
 
 
     return (
@@ -56,6 +57,13 @@ const DownloadPage = () => {
                     <Text>{File_Size}</Text>
                 </Box>
             </Flex>
+            <WrapItem boxShadow='xl' m={'auto'} w={'fit-content'} >
+                <Button p={10} fontSize={'40px'} colorScheme='green'>
+                    <a download href= {movie_url} >
+                        Download Here
+                    </a>
+                </Button>
+            </WrapItem>
         </Box>
     )
 }

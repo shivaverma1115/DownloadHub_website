@@ -1,14 +1,19 @@
-import { GET_MOVIES_FAILED, GET_MOVIES_GETMOVIEDETAILS, GET_MOVIES_REQUEST, GET_MOVIES_SEARCHMOVIES, GET_MOVIES_SUCCESS } from "./actionType";
+import { useEffect } from "react";
+import { GET_MOVIES_FAILED, GET_MOVIES_GETMOVIEDETAILS, GET_MOVIES_REQUEST, GET_MOVIES_SEARCHMOVIES, GET_MOVIES_SUCCESS, GET_TOKEN } from "./actionType";
 
 
 const initialState = {
-    movies: [],
+    movies: [1,2,3,4,5,6,7,8,9,10,11,12],
     isLoading: false,
     Serch :{} ,
     movieDetails :{} ,
-    isError: false
+    isError: false,
+    token : ""
 }
+
+
 export const reducer = (state = initialState, { type, payload }) => {
+
     switch (type) {
         case GET_MOVIES_REQUEST: {
             return {
@@ -40,6 +45,12 @@ export const reducer = (state = initialState, { type, payload }) => {
                 ...state,
                 isLoading: false,
                 isError: true
+            }
+        }
+        case GET_TOKEN: {
+            return {
+                ...state,
+                token : payload 
             }
         }
         default:
