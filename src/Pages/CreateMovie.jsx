@@ -33,7 +33,7 @@ const CreateMovie = () => {
 
     const handleShowData = async() => {
         console.log(createMovie);
-       const res = await fetch(`http://localhost:4000/movies/add`,{
+       const res = await fetch(`https://downlordhubmongodb-production.up.railway.app/movies/add`,{
         method: "POST",
         headers:{
             "Content-Type":"application/json",

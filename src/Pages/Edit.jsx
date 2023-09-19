@@ -36,7 +36,7 @@ const Edit = () => {
     const handleShowData = async () => {
         try {
             setIsLoading(true) ;
-            const res = await fetch(`http://localhost:4000/movies/${_id}`, {
+            const res = await fetch(`https://downlordhubmongodb-production.up.railway.app/movies/${_id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

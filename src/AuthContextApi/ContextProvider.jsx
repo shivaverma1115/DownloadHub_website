@@ -13,7 +13,7 @@ const ContextProvider = ({ children }) => {
     const fetchData = async () => {
         try {
             setIsLoading(true);
-            const res = await fetch(`http://localhost:4000/movies?title=${serchbox}&page=${page}&&limit=12`);
+            const res = await fetch(`https://downlordhubmongodb-production.up.railway.app/movies?title=${serchbox}&page=${page}&&limit=12`);
             const ans = await res.json();
             setMovies(ans)
             setIsLoading(false);

@@ -22,7 +22,7 @@ const MovieDetails = () => {
     const handleDelete = async () => {
         const { _id, user_id } = Ele
         try {
-            const res = await fetch(`http://localhost:4000/movies/${_id}`, {
+            const res = await fetch(`https://downlordhubmongodb-production.up.railway.app/movies/${_id}`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
