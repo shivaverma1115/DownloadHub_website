@@ -1,17 +1,18 @@
 import { Box, Button, Flex, Grid, GridItem, Skeleton, Text } from '@chakra-ui/react';
 import React, { useContext, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../AuthContextApi/ContextProvider';
 
 const Movies = ({ templateColumns }) => {
-    const {Movies,isLoading,Ele, setEle,page, setPage} = useContext(AuthContext) ;
+    const { Movies, isLoading, Ele, setEle } = useContext(AuthContext);
 
     const nevigate = useNavigate();
     const handleMovieDetails = (ele) => {
         nevigate("/movieDetails");
-        setEle(ele) ;
+        setEle(ele);
+        window.scrollTo(0,0) ;
     }
-
+    console.log(process.env.REACT_APP_BACKENED_URL)
     return (
         <>
 
@@ -39,12 +40,6 @@ const Movies = ({ templateColumns }) => {
                     })
                 }
             </Grid>
-
-            <Flex fontWeight={700} fontSize={20} w={'fit-content'}m={'auto'} >
-                <Button isLoading={page===1}spinner='none' m={10} color={'#f17a1f'} border={'1px solid #f17a1f'} bg={'none'} onClick={() => setPage(page - 1)} >Prev</Button>
-                <Text my={'auto'}>{page}</Text>
-                <Button isLoading={page===2}spinner={'none'} m={10} color={'#f17a1f'} border={'1px solid #f17a1f'} bg={'none'} onClick={() => setPage(page + 1)}>Next</Button>
-            </Flex>
         </>
     )
 }

@@ -13,7 +13,7 @@ const ContextProvider = ({ children }) => {
     const fetchData = async () => {
         try {
             setIsLoading(true);
-            const res = await fetch(`https://downlordhubmongodb-production.up.railway.app/movies?title=${serchbox}&page=${page}&&limit=12`);
+            const res = await fetch(`${process.env.REACT_APP_BACKENED_URL}/movies?title=${serchbox}&page=${page}&&limit=12`);
             const ans = await res.json();
             setMovies(ans)
             setIsLoading(false);
@@ -30,6 +30,8 @@ const ContextProvider = ({ children }) => {
     const [token,setToken] = useState("Empty") ;
     const[LoginAuth,setLoginAuth] = useState(false) ;
 
+    const [btn, setBtn] = useState(true) ;
+
     return (
         <AuthContext.Provider value={{
             Movies, setMovies,
@@ -39,7 +41,8 @@ const ContextProvider = ({ children }) => {
             page, setPage,
             Ele, setEle,
             token,setToken,
-            LoginAuth,setLoginAuth
+            LoginAuth,setLoginAuth,
+            btn, setBtn
         }}>
             {children}
         </AuthContext.Provider>

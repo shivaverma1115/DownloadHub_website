@@ -5,17 +5,18 @@ import { BiSearchAlt2 } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../AuthContextApi/ContextProvider';
 const Navbar = () => {
-    const { serchbox, setSearchBox } = useContext(AuthContext);
+    const { serchbox, setSearchBox , setBtn} = useContext(AuthContext);
 
-    const [btn, setBtn] = useState("Search");
 
     const [toggleSearch, setToggleSearch] = useState(false);
     const handleSearch = () => {
         if (toggleSearch === false) {
             setToggleSearch(true);
+            setBtn(false)
         }
         else {
             setToggleSearch(false);
+            setBtn(true)
         }
     }
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -28,7 +29,8 @@ const Navbar = () => {
         nevigate("/login")
     }
     const handleHome = () => {
-        setSearchBox("") ;
+        setBtn(false) ;
+        setSearchBox("");
         nevigate("/")
     }
     return (
@@ -43,7 +45,7 @@ const Navbar = () => {
                 </Box>
                 <Spacer />
                 <Flex display={['none', 'none', 'none', 'flex']} color={'white'} my={'auto'} fontSize={15} fontWeight={600} >
-                    <Box mx={3} onClick={handleHome}  >
+                    <Box cursor={'pointer'} mx={3} onClick={handleHome}  >
                         <Text>HOME</Text>
                     </Box>
                     <Box mx={3}>
@@ -52,14 +54,14 @@ const Navbar = () => {
                     <Box mx={3}>
                         <Text>Bollywood Movies</Text>
                     </Box>
-                    <Box mx={3} onClick={handleLogin} >
+                    <Box cursor={'pointer'} mx={3} onClick={handleLogin} >
                         <Text>Admin Login</Text>
                     </Box>
                 </Flex>
                 <Spacer />
-                <Flex onClick={()=>handleHome()} display={['none', 'flex', 'flex', 'flex']} maxW={'30vw'} my={'auto'}>
+                <Flex onClick={() => handleHome()} display={['none', 'flex', 'flex', 'flex']} maxW={'30vw'} my={'auto'}>
                     <Input onChange={(e) => setSearchBox(e.target.value)} borderRadius={0} placeholder='Search here..' bg={'white'} />
-                    <Button color={'white'} borderRadius={'none'} bg={'#f17a1f'}>{btn}</Button>
+                    <Button color={'white'} borderRadius={'none'} bg={'#f17a1f'}>Search</Button>
                 </Flex>
                 <Box onClick={handleSearch} color={'white'} display={['box', 'none', 'none', 'none']} my={2} p={1} mx={3} fontSize={30} border={'2px solid white'} >
                     <BiSearchAlt2 />
@@ -70,7 +72,7 @@ const Navbar = () => {
                     toggleSearch ? (
                         <Flex mx={5} display={['flex', 'none', 'none', 'none']} maxW={'100%'} my={'auto'} py={1}>
                             <Input onChange={(e) => setSearchBox(e.target.value)} borderRadius={0} placeholder='Search here..' bg={'white'} />
-                            <Button color={'white'} borderRadius={'none'} bg={'#f17a1f'}>{btn}</Button>
+                            <Button color={'white'} borderRadius={'none'} bg={'#f17a1f'}>Search</Button>
                         </Flex>
                     ) : ""
                 }
@@ -81,20 +83,18 @@ const Navbar = () => {
                     <DrawerContent>
                         <DrawerHeader borderBottomWidth='1px'>Basic Drawer</DrawerHeader>
                         <DrawerCloseButton fontSize={15} mt={2} border={'1px solid black'} />
-                        <DrawerBody>
-                            <Box fontSize={20} fontWeight={600} >
-                                <Box m={3} >
-                                    <Text>HOME</Text>
-                                </Box>
-                                <Box m={3}>
-                                    <Text>300MB Movies</Text>
-                                </Box>
-                                <Box m={3}>
-                                    <Text>Bollywood Movies</Text>
-                                </Box>
-                                <Box m={3}>
-                                    <Text>Dual Audio & Dubbed</Text>
-                                </Box>
+                        <DrawerBody fontSize={20} color={'gray'} >
+                            <Box py={2} fontWeight={700}px={5} cursor={'pointer'} mx={3} onClick={handleHome}  >
+                                <Text>HOME</Text>
+                            </Box>
+                            <Box py={2} fontWeight={700}px={5} mx={3}>
+                                <Text>300MB Movies</Text>
+                            </Box>
+                            <Box py={2} fontWeight={700}px={5} mx={3}>
+                                <Text>Bollywood Movies</Text>
+                            </Box>
+                            <Box py={2} fontWeight={700}px={5} cursor={'pointer'} mx={3} onClick={handleLogin} >
+                                <Text>Admin Login</Text>
                             </Box>
                         </DrawerBody>
                     </DrawerContent>

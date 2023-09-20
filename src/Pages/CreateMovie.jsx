@@ -1,4 +1,4 @@
-import { Box, Input, Text, Table, Tbody, Tr, Td, TableContainer, Select, Button } from '@chakra-ui/react'
+import { Box, useToast, Input, Text, Table, Tbody, Tr, Td, TableContainer, Select, Button } from '@chakra-ui/react'
 import React, { useContext, useState } from 'react';
 import { AiTwotoneStar } from 'react-icons/ai';
 import { AuthContext } from '../AuthContextApi/ContextProvider';
@@ -22,27 +22,35 @@ const CreateMovie = () => {
     });
 
     const [isloading, setIsLoading] = useState(false);
-    
+
 
     const handleInput = (e) => {
         setCreateMovie({ ...createMovie, [e.target.name]: e.target.value })
     }
 
-    
-    const {token} = useContext(AuthContext)
 
-    const handleShowData = async() => {
+    const { token } = useContext(AuthContext)
+
+    const toast = useToast()
+    const handleShowData = async () => {
         console.log(createMovie);
-       const res = await fetch(`https://downlordhubmongodb-production.up.railway.app/movies/add`,{
-        method: "POST",
-        headers:{
-            "Content-Type":"application/json",
-            'Authorization': `Bearer ${token}`,
-        },
-        body: JSON.stringify(createMovie) 
-       })
-       const ans = await res.json() ;
-       console.log(res) ;
+        const res = await fetch(`${process.env.REACT_APP_BACKENED_URL}/movies/add`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`,
+            },
+            body: JSON.stringify(createMovie)
+        })
+        const ans = await res.json();
+        console.log(res);
+        toast({
+            title: 'Uploaded',
+            description: "Movie has been updated on Website",
+            status: 'success',
+            duration: 10000,
+            isClosable: true,
+        })
     }
     return (
         <Box p={5} w={'100%'}>
@@ -51,7 +59,9 @@ const CreateMovie = () => {
                     <Tbody>
                         <Tr>
                             <Td>
-                                <Text fontSize={8} color={'red'} ><AiTwotoneStar /></Text>
+                                <Text fontSize={8} color={'red'} >
+                                    <AiTwotoneStar />
+                                </Text>
                                 Title:
                             </Td>
                             <Td><Input type='text' name='Title' value={createMovie.Title} onChange={(e) => handleInput(e)} placeholder='title here...' required border={'1px solid black'} /></Td>
@@ -103,9 +113,9 @@ const CreateMovie = () => {
                             </Td>
                             <Td>
                                 <Select placeholder='Select Quality' name='Movie_Quality' value={createMovie.Movie_Quality} onChange={(e) => handleInput(e)} >
-                                    <option value='400p'>400p</option>
-                                    <option value='720p'>720p</option>
-                                    <option value='1080p'>1080p</option>
+                                    <option value='400'>400p</option>
+                                    <option value='720'>720p</option>
+                                    <option value='1080'>1080p</option>
                                 </Select>
                             </Td>
                         </Tr>
@@ -136,7 +146,7 @@ const CreateMovie = () => {
                                 Poster :
                             </Td>
                             <Td>
-                                <UploadFiles name={'Poster'} setIsLoading={setIsLoading} setCreateMovie={setCreateMovie} createMovie={createMovie}/>
+                                <UploadFiles name={'Poster'} setIsLoading={setIsLoading} setCreateMovie={setCreateMovie} createMovie={createMovie} />
                             </Td>
                         </Tr>
                         <Tr>
@@ -145,7 +155,7 @@ const CreateMovie = () => {
                                 Movie Quality Img :
                             </Td>
                             <Td>
-                                <UploadFiles name={'big_img'} setIsLoading={setIsLoading} setCreateMovie={setCreateMovie} createMovie={createMovie}/>
+                                <UploadFiles name={'big_img'} setIsLoading={setIsLoading} setCreateMovie={setCreateMovie} createMovie={createMovie} />
                             </Td>
                         </Tr>
                     </Tbody>

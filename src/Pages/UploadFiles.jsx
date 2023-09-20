@@ -12,7 +12,7 @@ const UploadFiles = ({name,setIsLoading, setCreateMovie, createMovie}) => {
         formData.append("Image",files[0])
         try {
             setIsLoading(true) ;
-            fetch(`https://downlordhubmongodb-production.up.railway.app/upload-images`,{
+            fetch(`${process.env.REACT_APP_BACKENED_URL}/upload-images`,{
                 method:"POST",
                 headers:{
                     // "Content-Type":"application/json",

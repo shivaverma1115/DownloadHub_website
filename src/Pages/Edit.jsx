@@ -1,4 +1,4 @@
-import { Box, Input, Spacer, Text, Table, Tbody, Tr, Td, TableContainer, Select, Button, Flex } from '@chakra-ui/react'
+import { Box, Input, Spacer, Text, Table, Tbody, Tr, Td, TableContainer, Select, Button, Flex, useToast } from '@chakra-ui/react'
 import React, { useContext, useState } from 'react';
 import { AiTwotoneStar } from 'react-icons/ai';
 import Navbar from '../Components/Navbar';
@@ -33,10 +33,11 @@ const Edit = () => {
         setCreateMovie({ ...createMovie, [e.target.name]: e.target.value })
     }
 
+    const toast = useToast()
     const handleShowData = async () => {
         try {
             setIsLoading(true) ;
-            const res = await fetch(`https://downlordhubmongodb-production.up.railway.app/movies/${_id}`, {
+            const res = await fetch(`${process.env.REACT_APP_BACKENED_URL}/movies/${_id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -46,6 +47,13 @@ const Edit = () => {
             })
             const ans = await res.json();
             console.log(ans);
+            toast({
+                title: 'Edit Successful',
+                description: "Your query has been updated",
+                status: 'success',
+                duration: 10000,
+                isClosable: true,
+            })
             setIsLoading(false) ;
         } catch (error) {
             setIsLoading(false) ;
@@ -102,7 +110,7 @@ const Edit = () => {
                                         Type:
                                     </Td>
                                     <Td>
-                                        <Select placeholder='Select type' name='Type' value={createMovie.Type} onChange={(e) => handleInput(e)} >
+                                        <Select placeholder='Select type' name='Type' onChange={(e) => handleInput(e)} >
                                             <option value='Action,Adventure,Sci-Fi'>Action,Adventure,Sci-Fi</option>
                                             <option value='Romantic'>Romantic</option>
                                             <option value='Commedy'>Commedy</option>
@@ -129,9 +137,9 @@ const Edit = () => {
                                     </Td>
                                     <Td>
                                         <Select placeholder='Select Quality' name='Movie_Quality' value={createMovie.Movie_Quality} onChange={(e) => handleInput(e)} >
-                                            <option value='400p'>400p</option>
-                                            <option value='720p'>720p</option>
-                                            <option value='1080p'>1080p</option>
+                                            <option value='400'>400p</option>
+                                            <option value='720'>720p</option>
+                                            <option value='1080'>1080p</option>
                                         </Select>
                                     </Td>
                                 </Tr>

@@ -46,7 +46,7 @@ const Links = () => {
             {
               link.map((ele, i) => {
                 return (
-                  <Box p={1} onClick={handleDownload} >
+                  <Box key={i} p={1} onClick={handleDownload} >
                     <Link>{ele.l}</Link>
                     <hr />
                   </Box>

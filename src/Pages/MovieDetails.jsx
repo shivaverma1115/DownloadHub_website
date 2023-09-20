@@ -1,28 +1,31 @@
-import { Box, Flex, Grid, GridItem, Image, Img, Spacer, Text } from '@chakra-ui/react'
+import { Box, Flex, Grid, GridItem, Image, Img, Spacer, Text, useToast } from '@chakra-ui/react'
 import React, { useContext, useState } from 'react'
 import Information from './Information'
 import Movies from './Movies';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../Components/Navbar';
 import { AuthContext } from '../AuthContextApi/ContextProvider';
+import Pagination from './Pagination';
 
 const MovieDetails = () => {
-    const { Ele, LoginAuth, token , setPage} = useContext(AuthContext);
-    const {  Title, Poster, Directed, Year, Type, Languages, Film_Stars, Movie_Quality, File_Size, Story_line, big_img, movie_drive_link } = Ele
+    const { Ele, LoginAuth, token, setPage } = useContext(AuthContext);
+    const { Title, Poster, Directed, Year, Type, Languages, Film_Stars, Movie_Quality, File_Size, Story_line, big_img, movie_drive_link } = Ele
 
 
     const nevigate = useNavigate();
     const handleSingleDownlord = () => {
         nevigate('/generateLink')
+        window.scrollTo(0,0) ;
     }
     const handleEdit = () => {
         nevigate('/adminPage/edit')
     }
-    
+
+    const toast = useToast()
     const handleDelete = async () => {
         const { _id, user_id } = Ele
         try {
-            const res = await fetch(`https://downlordhubmongodb-production.up.railway.app/movies/${_id}`, {
+            const res = await fetch(`${process.env.REACT_APP_BACKENED_URL}/movies/${_id}`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
@@ -30,16 +33,27 @@ const MovieDetails = () => {
                 },
                 // body: JSON.parse(user_id)
             })
-            .then((res)=>console.log(res))
-            .then(()=>nevigate("/"))
-            .then(()=>setPage(1))
+                .then((res) => console.log(res))
+                .then(() => nevigate("/"))
+                .then(() => setPage(1))
+                .then(()=>{
+                    toast({
+                        title: 'Delete Successful',
+                        description: "Your movie has been deleted",
+                        status: 'success',
+                        duration: 10000,
+                        isClosable: true,
+                    })
+                })
         } catch (error) {
             console.log(error);
         }
     }
     return (
-        <Box minH={'93vh'}>
-            <Navbar />
+        <Box id='movieDetails' minH={'93vh'}>
+            <Box>
+                <Navbar />
+            </Box>
             <Information
                 inform1={"This Is Our Official Website All other Are Fake Real Url Is"}
                 inform2={"downloadhub.singles"}
@@ -52,9 +66,9 @@ const MovieDetails = () => {
                         {LoginAuth ? (
                             <>
                                 <Spacer />
-                                <Text color={'white'} fontWeight={700} p={2} bg={'black'} px={5} my={5} w={'fit-content'} onClick={handleEdit} >Edit</Text>
+                                <Text cursor={'pointer'} color={'white'} fontWeight={700} p={2} bg={'black'} px={5} my={5} w={'fit-content'} onClick={handleEdit} >Edit</Text>
                                 <Spacer />
-                                <Text color={'white'} fontWeight={700} p={2} bg={'red'} px={5} my={5} w={'fit-content'} onClick={(_id, user_id) => handleDelete(_id, user_id)} >Delete</Text>
+                                <Text cursor={'pointer'} color={'white'} fontWeight={700} p={2} bg={'red'} px={5} my={5} w={'fit-content'} onClick={(_id, user_id) => handleDelete(_id, user_id)} >Delete</Text>
                             </>
                         ) : ""}
                     </Flex>
@@ -126,22 +140,22 @@ const MovieDetails = () => {
                                     templateColumns='repeat(4, 1fr)'
                                     gap={4} w={'100%'} m={'auto'}
                                 >
-                                    <GridItem colSpan={2} bg={'#4285f4'} >
+                                    <GridItem boxShadow='dark-lg' colSpan={2} bg={'#4285f4'} >
                                         <Text boxShadow='lg' border={'1px solid black'} p={3} h={'100%'} fontSize={[10, 15, 20]} fontWeight={800} color={'white'} >
                                             DIRECT LINK (FAST)
                                         </Text>
                                     </GridItem>
-                                    <GridItem colSpan={2} bg={'red'} >
+                                    <GridItem boxShadow='dark-lg' colSpan={2} bg={'red'} >
                                         <Text boxShadow='lg' border={'1px solid black'} p={3} h={'100%'} fontSize={[10, 15, 20]} fontWeight={800} color={'white'} >
                                             WATCH ONLINE
                                         </Text>
                                     </GridItem>
-                                    <GridItem colSpan={2} bg={'blue'} >
+                                    <GridItem boxShadow='dark-lg' colSpan={2} bg={'blue'} >
                                         <Text boxShadow='lg' border={'1px solid black'} p={3} h={'100%'} fontSize={[10, 15, 20]} fontWeight={800} color={'white'} >
                                             G DRIVE & DIRECT LINK
                                         </Text>
                                     </GridItem>
-                                    <GridItem onClick={handleSingleDownlord} colSpan={2} bg={'green'} >
+                                    <GridItem boxShadow='dark-lg' onClick={handleSingleDownlord} colSpan={2} bg={'green'} >
                                         <Text boxShadow='lg' border={'1px solid black'} p={3} h={'100%'} fontSize={[10, 15, 20]} fontWeight={800} color={'white'} >
                                             SINGLE DOWNLOAD
                                         </Text>
@@ -150,11 +164,14 @@ const MovieDetails = () => {
                             </Box>
                         </Box>
                     </Box>
-                    <Text fontWeight={600} color={'white'} p={3} bg={'#4285f4'} my={10}>
+                    <Text boxShadow='dark-lg' fontWeight={600} color={'white'} p={3} bg={'#4285f4'} my={10}>
                         You May Also Like
                     </Text>
                     <Box w={'fit-content'} m={'auto'} >
                         <Movies templateColumns={['repeat(1, 1fr)', 'repeat(2, 1fr)', 'repeat(3, 1fr)', 'repeat(3, 1fr)', 'repeat(3, 1fr)', 'repeat(3, 1fr)']} />
+                    </Box>
+                    <Box>
+                        <Pagination />
                     </Box>
                 </Box>
                 <Box w={['fit-content', 'fit-content', 'fit-content', 'fit-content', 'fit-content', '25%']} m={['auto', 'auto', 'auto', 'auto', 5]} bg={'white'} >
@@ -162,7 +179,10 @@ const MovieDetails = () => {
                     <Text w={'fit-content'} bg={'#4285f4'} color={'white'} fontWeight={700} p={2}>How to Download Movies</Text>
                     <Image py={5} src='https://imgshare.info/images/2018/04/09/HOw2Bto.png' />
                     <Box w={'fit-content'} m={'auto'} >
-                        <Movies templateColumns={['repeat(1, 1fr)', 'repeat(2, 1fr)', 'repeat(2, 1fr)', 'repeat(2, 1fr)', 'repeat(2, 1fr)', 'repeat(1, 1fr)']} />
+                        <Movies templateColumns={['repeat(1, 1fr)', 'repeat(2, 1fr)', 'repeat(2, 1fr)', 'repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(1, 1fr)']} />
+                    </Box>
+                    <Box>
+                        <Pagination />
                     </Box>
                 </Box>
             </Flex>
