@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.js": "/static/js/main.007df6ad.js",
-    "static/media/Client Promo Video.mp4": "/static/media/Client Promo Video.68aea478cb733b2699bd.mp4",
-    "index.html": "/index.html",
-    "main.007df6ad.js.map": "/static/js/main.007df6ad.js.map"
+    "main.js": "/DownloadHubFrontened/static/js/main.7715fb09.js",
+    "static/media/Client Promo Video.mp4": "/DownloadHubFrontened/static/media/Client Promo Video.68aea478cb733b2699bd.mp4",
+    "index.html": "/DownloadHubFrontened/index.html",
+    "main.7715fb09.js.map": "/DownloadHubFrontened/static/js/main.7715fb09.js.map"
   },
   "entrypoints": [
-    "static/js/main.007df6ad.js"
+    "static/js/main.7715fb09.js"
   ]
 }
