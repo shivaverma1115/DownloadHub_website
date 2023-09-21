@@ -11,11 +11,11 @@
 
 **Interactive Pages:** All the pages are completly responsive and go through any devices, which make good user experiance.
 
-![image](https://res.cloudinary.com/dbbuqesjg/image/upload/v1695317407/DownloadHub-MERN-Photos/2_rnyagf.png)
+![image](https://res.cloudinary.com/dbbuqesjg/image/upload/v1695317645/DownloadHub-MERN-Photos/7_sm8an4.png)
 
 
 **Home Page Design:** 
-![image](https://github.com/monurajputrko/Adventour/assets/68837552/2f037799-4ebb-4f7a-8cb6-b97e1c27158d)
+![image]([https://github.com/monurajputrko/Adventour/assets/68837552/2f037799-4ebb-4f7a-8cb6-b97e1c27158d](https://res.cloudinary.com/dbbuqesjg/image/upload/v1695317409/DownloadHub-MERN-Photos/4_c3asto.png))
 
 **Movie Details Page:**
 
@@ -25,7 +25,7 @@ Technologies Used Context-API for state management React Router for navigation M
 
 <p align="center">
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=react,js,redux,firebase,figma,materialui,tailwind,css,git" />
+    <img src="https://skillicons.dev/icons?i=react,js,contextapi,mongodb,node,express,chakraui,css,git" />
   </a>
 </p>
 
