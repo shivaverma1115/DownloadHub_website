@@ -15,7 +15,7 @@
 
 
 **Movie Details Pag:** 
-![image](https://github.com/monurajputrko/Adventour/assets/68837552/2f037799-4ebb-4f7a-8cb6-b97e1c27158d](https://res.cloudinary.com/dbbuqesjg/image/upload/v1695317409/DownloadHub-MERN-Photos/4_c3asto.png))
+![image](https://res.cloudinary.com/dbbuqesjg/image/upload/v1695317414/DownloadHub-MERN-Photos/3_ussh47.png))
 
 **Movie Details Page:**
 
