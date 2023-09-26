@@ -1,12 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { Box, Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerHeader, DrawerOverlay, Flex, Image, Input, InputGroup, InputRightAddon, Spacer, Text, useDisclosure } from "@chakra-ui/react";
+import React, { useContext, useState } from 'react'
+import { Box, Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerHeader, DrawerOverlay, Flex, Image, Input, Spacer, Text, useDisclosure, useToast } from "@chakra-ui/react";
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { BiSearchAlt2 } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../AuthContextApi/ContextProvider';
 const Navbar = () => {
-    const { serchbox, setSearchBox , setBtn} = useContext(AuthContext);
-
+    const {  setSearchBox , setBtn,LoginAuth} = useContext(AuthContext);
 
     const [toggleSearch, setToggleSearch] = useState(false);
     const handleSearch = () => {
@@ -24,10 +23,23 @@ const Navbar = () => {
     const nevigate = useNavigate();
     const handleCreateMovies = () => {
         nevigate("/adminPage")
+        if( !LoginAuth ){
+            toast({
+                title: 'Login First',
+                description: "You must be login in our website",
+                status: 'error',
+                duration: 10000,
+                isClosable: true,
+            })
+            nevigate('/login')
+        }
     }
     const handleLogin = () => {
         nevigate("/login")
     }
+    
+
+    const toast = useToast()
     const handleHome = () => {
         setBtn(false) ;
         setSearchBox("");
@@ -40,7 +52,7 @@ const Navbar = () => {
                     <GiHamburgerMenu />
                 </Box>
                 <Spacer />
-                <Box onClick={() => handleCreateMovies()} minH={'6vh'} >
+                <Box minH={'6vh'} >
                     <Image src='https://downloadhub.singles/wp-content/uploads/2017/03/downhub.png' />
                 </Box>
                 <Spacer />
@@ -48,8 +60,8 @@ const Navbar = () => {
                     <Box cursor={'pointer'} mx={3} onClick={handleHome}  >
                         <Text>HOME</Text>
                     </Box>
-                    <Box mx={3}>
-                        <Text>300MB Movies</Text>
+                    <Box onClick={() => handleCreateMovies()} mx={3}>
+                        <Text>Create Movies</Text>
                     </Box>
                     <Box mx={3}>
                         <Text>Bollywood Movies</Text>

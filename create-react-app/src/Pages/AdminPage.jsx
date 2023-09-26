@@ -1,4 +1,4 @@
-import { Box, Flex, Input, Spacer, Text, Table, Tbody, Tr, Td, TableContainer, Select, Button, AccordionPanel, AccordionButton, AccordionIcon, Accordion, AccordionItem, } from '@chakra-ui/react'
+import { Box, Flex, Spacer, Text } from '@chakra-ui/react'
 import React from 'react';
 import Navbar from '../Components/Navbar'
 import CreateMovie from './CreateMovie';

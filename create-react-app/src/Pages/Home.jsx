@@ -9,9 +9,9 @@ import Pagination from './Pagination';
 import { AuthContext } from '../AuthContextApi/ContextProvider';
 
 const Home = () => {
-  const {btn} = useContext(AuthContext) ;
+  const {btn,mode} = useContext(AuthContext) ;
   return (
-    <Box>
+    <Box bg={mode==='light'?"white":"black"}>
       <Navbar />
       {
         btn ? (

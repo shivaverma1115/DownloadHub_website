@@ -8,16 +8,26 @@ import { BiLogInCircle } from 'react-icons/bi';
 
 import movie_url from "../Movies/Client Promo Video.mp4"
 import { AuthContext } from '../AuthContextApi/ContextProvider';
+import Navbar from '../Components/Navbar';
 
 const DownloadPage = () => {
     const toast = useToast()
     const {Ele} = useContext(AuthContext) ;
     const { Title, Year, File_Size,movie_drive_link } = Ele ;
 
+    const handledownload = ()=>{
+        toast({
+            title: 'Your movie is downloading',
+            status: 'success',
+            duration: 10000,
+            isClosable: true,
+        })
+    }
 
     return (
         <Box minH={'100vh'} >
-            <Flex color={'white'} bg={'#3d5b99'} px={5}>
+            <Navbar/>
+            {/* <Flex color={'white'} bg={'#3d5b99'} px={5}>
                 <Box fontSize={30} my={'auto'}><AiOutlineCloudDownload /></Box>
                 <Text fontWeight={100} p={3} fontSize={20} >UPLOADHUB</Text>
                 <Spacer />
@@ -39,7 +49,7 @@ const DownloadPage = () => {
                         <Text fontWeight={600} fontSize={15} >Sign up</Text>
                     </Box>
                 </Flex>
-            </Flex>
+            </Flex> */}
             <Flex bg={'white'} display={['box', 'flex', 'flex']} border={'1px solid gray'} p={5} w={'50%'} m={'auto'} my={40} >
                 <Box>
                     <Box fontSize={60}><AiOutlineCloudDownload /></Box>
@@ -58,8 +68,8 @@ const DownloadPage = () => {
                 </Box>
             </Flex>
             <WrapItem boxShadow='xl' m={'auto'} w={'fit-content'} >
-                <Button p={10} fontSize={'40px'} colorScheme='green'>
-                    <a download href= {movie_url} >
+                <Button onClick={()=>handledownload()} p={10} fontSize={'40px'} colorScheme='green'>
+                    <a download href= {movie_drive_link} >
                         Download Here
                     </a>
                 </Button>

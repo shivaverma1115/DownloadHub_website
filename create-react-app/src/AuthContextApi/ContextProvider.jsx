@@ -34,6 +34,7 @@ const ContextProvider = ({ children }) => {
 
     return (
         <AuthContext.Provider value={{
+            mode:"light",
             Movies, setMovies,
             isLoading, setIsLoading,
             isError, setIsError,

@@ -1,18 +1,18 @@
 import React, { useContext } from 'react'
 import { AuthContext } from '../AuthContextApi/ContextProvider';
+import { useToast } from '@chakra-ui/react';
 
-const UploadFiles = ({name,setIsLoading, setCreateMovie, createMovie}) => {
+const UploadFiles = ({setIsLoading,name, setCreateMovie, createMovie}) => {
     const {token} = useContext(AuthContext) ;
 
-    const handleUpload = (e) => {
+    const handleUpload = async(e) => {
         e.preventDefault() ;
-        console.log(e.target.files) ;
         const files = e.target.files
         const formData = new FormData() ;
-        formData.append("Image",files[0])
+        formData.append("Files",files[0])
         try {
-            setIsLoading(true) ;
-            fetch(`${process.env.REACT_APP_BACKENED_URL}/upload-images`,{
+            setIsLoading(true)
+           var res = await fetch(`${process.env.REACT_APP_BACKENED_URL}/googleDrive`,{
                 method:"POST",
                 headers:{
                     // "Content-Type":"application/json",
@@ -20,24 +20,18 @@ const UploadFiles = ({name,setIsLoading, setCreateMovie, createMovie}) => {
                 },
                 body:formData
             })
-            .then((res)=>{
-                res.json().then((result)=>{
-                    console.log("result",result.data[0].url) ;
-                    setCreateMovie({ ...createMovie, [name]: result.data[0].url })
-                })
-            })
-            .then(()=>{
-                setIsLoading(false)
-            })
+            var ans = await res.json() ;
+            setCreateMovie({ ...createMovie, [e.target.name] : ans.webContentLink })
+            setIsLoading(false)
+            console.log(ans) ;
         } catch (error) {
             console.log(error) ;
             setIsLoading(false)
         }
     }
-
     return (
         <form >
-            <input type='file' name="Image" onChange={(e)=>handleUpload(e)} />
+            <input type='file' name= {name} onChange={(e)=>handleUpload(e)} />
         </form>
     )
 }

@@ -2,12 +2,12 @@ import { Box, Input, Spacer, Text, Table, Tbody, Tr, Td, TableContainer, Select,
 import React, { useContext, useState } from 'react';
 import { AiTwotoneStar } from 'react-icons/ai';
 import Navbar from '../Components/Navbar';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../AuthContextApi/ContextProvider';
 
 const Edit = () => {
     const {Ele,token} = useContext(AuthContext) ;
-    const { _id, Title, Poster, Category, imdbID, Directed, Year, Type, Languages, Film_Stars, Movie_Quality, File_Size, Story_line, big_img, movie_drive_link } = Ele
+    const { _id, Title, Poster, Category,  Directed, Year, Type, Languages, Film_Stars, Movie_Quality, File_Size, Story_line, big_img, movie_drive_link } = Ele
     const [createMovie, setCreateMovie] = useState({
         "Title": Title,
         "Category": Category,
@@ -34,6 +34,7 @@ const Edit = () => {
     }
 
     const toast = useToast()
+    const nevigate = useNavigate() ;
     const handleShowData = async () => {
         try {
             setIsLoading(true) ;
@@ -48,13 +49,14 @@ const Edit = () => {
             const ans = await res.json();
             console.log(ans);
             toast({
-                title: 'Edit Successful',
+                title: 'Edited',
                 description: "Your query has been updated",
-                status: 'success',
+                status: 'warning',
                 duration: 10000,
                 isClosable: true,
             })
             setIsLoading(false) ;
+            nevigate("/")
         } catch (error) {
             setIsLoading(false) ;
             console.log(error) ;

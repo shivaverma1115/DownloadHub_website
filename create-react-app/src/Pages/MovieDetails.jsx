@@ -1,5 +1,5 @@
 import { Box, Flex, Grid, GridItem, Image, Img, Spacer, Text, useToast } from '@chakra-ui/react'
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import Information from './Information'
 import Movies from './Movies';
 import { useNavigate } from 'react-router-dom';
@@ -9,7 +9,7 @@ import Pagination from './Pagination';
 
 const MovieDetails = () => {
     const { Ele, LoginAuth, token, setPage } = useContext(AuthContext);
-    const { Title, Poster, Directed, Year, Type, Languages, Film_Stars, Movie_Quality, File_Size, Story_line, big_img, movie_drive_link } = Ele
+    const { Title, Poster, Directed, Year, Languages, Film_Stars, Movie_Quality, File_Size, Story_line, big_img } = Ele
 
 
     const nevigate = useNavigate();

@@ -6,7 +6,7 @@ import { AuthContext } from '../AuthContextApi/ContextProvider'
 
 const Login = () => {
 
-    const { token, setToken, LoginAuth, setLoginAuth } = useContext(AuthContext);
+    const { setToken, setLoginAuth } = useContext(AuthContext);
 
 
     const [Inp, setInp] = useState({})
@@ -28,15 +28,7 @@ const Login = () => {
             const ans = await res.json();
             setToken(ans.token)
             setLoginAuth(res.ok)
-            console.log(LoginAuth);
-            nevigate("/");
-            toast({
-                title: 'Login Successful',
-                description: "You are Login as Admin access",
-                status: 'success',
-                duration: 10000,
-                isClosable: true,
-            })
+            console.log(Inp)
         } catch (error) {
             console.log(error);
         }
@@ -44,7 +36,14 @@ const Login = () => {
     const handleLogOut = () => {
         setToken("Empty");
         setLoginAuth(false);
-        console.log(token);
+        toast({
+            title: 'Logout Successful',
+            description: "You are Logout as Admin access",
+            status: 'warning',
+            duration: 10000,
+            isClosable: true,
+        })
+        nevigate("/");
     }
     return (
         <Box bg={'white'} >
@@ -56,7 +55,7 @@ const Login = () => {
                 </Box>
                 <Box px={10} my={5}>
                     <Text fontSize={30} fontWeight={700} color={'gray'} >Admin Password :</Text>
-                    <Input border={'1px solid gray'} type='text' name='password' required onChange={(e) => handleInp(e)} />
+                    <Input border={'1px solid gray'} type='password' name='password' required onChange={(e) => handleInp(e)} />
                 </Box>
                 <Flex p={5} w={'fit-content'} m={'auto'} >
                     <Box mr={10}>

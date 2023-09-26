@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react';
 import { AiTwotoneStar } from 'react-icons/ai';
 import { AuthContext } from '../AuthContextApi/ContextProvider';
 import UploadFiles from './UploadFiles';
+import { useNavigate } from 'react-router-dom';
 
 const CreateMovie = () => {
     const [createMovie, setCreateMovie] = useState({
@@ -32,6 +33,7 @@ const CreateMovie = () => {
     const { token } = useContext(AuthContext)
 
     const toast = useToast()
+    const nevigate = useNavigate() ;
     const handleShowData = async () => {
         console.log(createMovie);
         const res = await fetch(`${process.env.REACT_APP_BACKENED_URL}/movies/add`, {
@@ -43,7 +45,7 @@ const CreateMovie = () => {
             body: JSON.stringify(createMovie)
         })
         const ans = await res.json();
-        console.log(res);
+        console.log(ans);
         toast({
             title: 'Uploaded',
             description: "Movie has been updated on Website",
@@ -51,6 +53,15 @@ const CreateMovie = () => {
             duration: 10000,
             isClosable: true,
         })
+        nevigate("/")
+    }
+    console.log(isloading)
+    if( isloading ){
+        return (
+            <Box bg={'transparent'} m={'auto'} top={'80%'}right={'15%'} position={'absolute'} >
+                <img src='https://i.gifer.com/origin/b4/b4d657e7ef262b88eb5f7ac021edda87.gif' />
+            </Box>
+        )
     }
     return (
         <Box p={5} w={'100%'}>
@@ -102,7 +113,7 @@ const CreateMovie = () => {
                                 <Select placeholder='Select languages' name='Languages' value={createMovie.Languages} onChange={(e) => handleInput(e)} >
                                     <option value='Hindi'>Hindi</option>
                                     <option value='English'>English</option>
-                                    <option value='Hindi,English'>Hindi,English</option>
+                                    <option value='Hindi-English'>Hindi-English</option>
                                 </Select>
                             </Td>
                         </Tr>
@@ -158,11 +169,19 @@ const CreateMovie = () => {
                                 <UploadFiles name={'big_img'} setIsLoading={setIsLoading} setCreateMovie={setCreateMovie} createMovie={createMovie} />
                             </Td>
                         </Tr>
+                        <Tr>
+                            <Td>
+                                <Text fontSize={8} color={'red'} ><AiTwotoneStar /></Text>
+                                Movie.mp4
+                            </Td>
+                            <Td>
+                                <UploadFiles name={'movie_drive_link'} setIsLoading={setIsLoading} setCreateMovie={setCreateMovie} createMovie={createMovie} />
+                            </Td>
+                        </Tr>
                     </Tbody>
                     <Box w={'fit-content'} m={'auto'} mt={5} >
                         <Button
                             onClick={handleShowData}
-                            isLoading={isloading}
                             colorScheme='blue'
                             loadingText='Loading'
                             variant='outline'

@@ -1,10 +1,10 @@
-import { Box, Button, Flex, Grid, GridItem, Skeleton, Text } from '@chakra-ui/react';
-import React, { useContext, useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom';
+import { Box, Grid, GridItem, Skeleton } from '@chakra-ui/react';
+import React, { useContext } from 'react'
+import {  useNavigate } from 'react-router-dom';
 import { AuthContext } from '../AuthContextApi/ContextProvider';
 
 const Movies = ({ templateColumns }) => {
-    const { Movies, isLoading, Ele, setEle } = useContext(AuthContext);
+    const { Movies, isLoading, setEle } = useContext(AuthContext);
 
     const nevigate = useNavigate();
     const handleMovieDetails = (ele) => {
@@ -12,7 +12,7 @@ const Movies = ({ templateColumns }) => {
         setEle(ele);
         window.scrollTo(0,0) ;
     }
-    console.log(process.env.REACT_APP_BACKENED_URL)
+    // console.log(process.env.REACT_APP_BACKENED_URL)
     return (
         <>
 
