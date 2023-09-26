@@ -1,70 +1,31 @@
-# Getting Started with Create React App
+<h1>DownloadHub</h1> DownloadHub based on MERN stack web application that allows users to browse, search, and download movies in high quality. It has an extensive library of movies to choose from, including new releases, classic films, and foreign films. DownloadHub is easy to use and navigate, and it offers a variety of features to help users find the perfect movie .
+<br/>
+<br/>
+<b>Live At :</b> https://create-react-app-seven-teal-51.vercel.app/
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Features 
 
-## Available Scripts
+**DownloadHub:** It has an extensive library of movies to choose from, including new releases, classic films, and foreign films. DownloadHub is easy to use and navigate, and it offers a variety of features to help users find the perfect movie .
 
-In the project directory, you can run:
+![image](https://res.cloudinary.com/dbbuqesjg/image/upload/v1695317422/DownloadHub-MERN-Photos/1_q93rrl.png)
 
-### `npm start`
+**Interactive Pages:** All the pages are completly responsive and go through any devices, which make good user experiance.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+![image](https://res.cloudinary.com/dbbuqesjg/image/upload/v1695317645/DownloadHub-MERN-Photos/7_sm8an4.png)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+**Movie Details Pag:** 
+![image](https://res.cloudinary.com/dbbuqesjg/image/upload/v1695317414/DownloadHub-MERN-Photos/3_ussh47.png))
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Movie Details Page:**
 
-### `npm run build`
+![image](https://res.cloudinary.com/dbbuqesjg/image/upload/v1695317409/DownloadHub-MERN-Photos/4_c3asto.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Technologies Used Context-API for state management React Router for navigation Mapbox API for interactive maps OpenWeather API for weather forecasts MongoDB for user authentication and data storage Chakra & Material Components for styling. We welcome contributions from the community!
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<p align="center">
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=react,js,contextapi,mongodb,node,express,chakraui,css,git" />
+  </a>
+</p>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
