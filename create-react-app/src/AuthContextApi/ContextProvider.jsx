@@ -10,10 +10,11 @@ const ContextProvider = ({ children }) => {
     const [isError, setIsError] = useState(false);
     const [Movies, setMovies] = useState([]);
 
+    const skip = (parseInt(page - 1) * (parseInt(12)));
     const fetchData = async () => {
         try {
             setIsLoading(true);
-            const res = await fetch(`${process.env.REACT_APP_BACKENED_URL}/movies?title=${serchbox}&page=${page}&&limit=12`);
+            const res = await fetch(`${process.env.REACT_APP_BACKENED_URL}/movies?title=${serchbox}&page=${page}&skip=${skip}&limit=12`);
             const ans = await res.json();
             setMovies(ans)
             setIsLoading(false);
@@ -39,7 +40,7 @@ const ContextProvider = ({ children }) => {
             isLoading, setIsLoading,
             isError, setIsError,
             serchbox, setSearchBox,
-            page, setPage,
+            page, setPage,skip,
             Ele, setEle,
             token,setToken,
             LoginAuth,setLoginAuth,
