@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form>
+        <input type="file" multiple name="Files" required />
+        <input type="submit" value="Upload Files" />
+    </form>
+</body>
+
+</html>
+
+<script>
+    let formElem = document.querySelector("form");
+    formElem.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        try {
+            await fetch('/createMovies/upload', {
+            method: "POST",
+            body: new FormData(formElem)
+        })
+        } catch (error) {
+            console.log({error:"something got error"}) ;
+        }
+    })
+</script>
