@@ -14,7 +14,7 @@ const ContextProvider = ({ children }) => {
     const fetchData = async () => {
         try {
             setIsLoading(true);
-            const res = await fetch(`${process.env.REACT_APP_BACKENED_URL}/movies?title=${serchbox}&page=${page}&skip=${skip}&limit=12`);
+            const res = await fetch(`https://downloadbackened.onrender.com/movies?title=${serchbox}&page=${page}&skip=${skip}&limit=12`);
             const ans = await res.json();
             setMovies(ans)
             setIsLoading(false);
